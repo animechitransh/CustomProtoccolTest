@@ -1,0 +1,72 @@
+<html>
+<script type="text/javascript">
+    document.cookie = "auth_code:123456789";
+
+    const streamToText = async (blob) => {
+        const readableStream = await blob.getReader();
+        const chunk = await readableStream.read();
+
+        return new TextDecoder('utf-8').decode(chunk.value);
+    };
+
+    const bufferToText = (buffer) => {
+        const bufferByteLength = buffer.byteLength;
+        const bufferUint8Array = new Uint8Array(buffer, 0, bufferByteLength);
+
+        return new TextDecoder().decode(bufferUint8Array);
+    };
+
+
+    function uploadFile() {
+        let file = document.getElementById("image-file").files[0];
+        var fr = new FileReader();
+        var data;
+
+       /* (async () => {
+            const fileContent = await file.text();
+
+            console.log('.text()', fileContent);
+
+            const fileContentStream = await file.stream();
+
+            var data = await streamToText(fileContentStream);
+                console.log('.stream()', data) ;
+            
+
+            const buffer = await file.arrayBuffer();
+
+            console.log('.buffer()', bufferToText(buffer));
+
+            const fileSliceBlob = file.slice(0, file.length);
+            const fileSliceBlobStream = await fileSliceBlob.stream();
+
+            console.log('.slice() and .stream()', await streamToText(fileSliceBlobStream));
+        })();
+        */
+
+
+        window.location.href = "ka://" + data;
+        
+        /*
+        var fr = new FileReader();
+        fr.onload = function () {
+            document.getElementById('output')
+                .textContent = fr.result;
+        }
+
+        fr.readAsText(this.files[0]);
+        */
+    }
+
+    function upload_External() {
+        window.location.href = "ka://" + document.cookie;
+    }
+
+</script>
+<body>
+    <!--<input id="image-file" type="file" /><br /><br /><br />-->
+    <button type="button" value="Upload File" onclick="upload_External();">Upload File!</button>
+
+</body>
+
+</html>
